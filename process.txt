@@ -32,8 +32,10 @@ mongoose
         加载mongoose工具模块
         引入模式的文件，来拿到它导出的模块
         生成模型
-        将这个构造函数导出
+        将这个构造函数导出，生成模型的第一个参数加上s 就是数据库中的表
     在入口文件实现增删改查
 
 交互数据，后端逻辑
-    引入mongoose模块链接本地数据库，然后调用connect
+    引入mongoose模块链接本地数据库，然后调用connect，该connect没有密码和用户名
+    需要的中间件：underscore，body-parser，servestatic，
+    引入mongo的模式和模型
