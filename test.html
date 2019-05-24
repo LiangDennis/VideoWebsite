@@ -45,3 +45,28 @@
       </form>
 </body>
 </html>
+
+<!-- 盒子模型，css,
+多行文字垂直居中
+前端优化方案
+js，typeof
+Url的过程
+
+
+奇偶两边
+字符串第一个出现不重复
+function findStr(str) {
+      var arr = str.split("");//转换为数组
+      arr.sort();//排序
+      for(var i=0;i<arr.length;) {
+          var index=  arr.lastIndexOf(arr[i]);//是否有相同的元素
+          if(index ===i) {//只有一个元素
+              console.log(arr[index]);
+              return;
+          }else {
+              i =index+1;//下标直接跳到index的下一个
+          }
+      }
+      console.log(false);
+  } -->
+  

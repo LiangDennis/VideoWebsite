@@ -1,0 +1,28 @@
+grunt集成自动启动
+    安装:grunt -g(可能也要--save-dev)，grunt-cli-g，grunt-contrib-watch --save-dev(只要有文件添加修改删除，重新执行在它里面注册好的任务)
+        grunt-nodemon --save-dev，（实时监听app.js，有改动重启，对app.js的封装）
+        grunt-concurrent --save-dev（优化）
+    配置grunt（gruntfile.js）
+    同时nodemon 中入口文件的配置需要修改
+对密码进行加密
+    windows系统下npm install bcryptjs --save，同时引用是require(bcrypt.js)
+登录注册页面
+    固定fixed是fixed-top和fixed-bottom
+    判断是否为空数组可以用length属性
+    {删除功能，和保存密码为md5的形式没有实现，验证不能为空}
+    利用mongodb 做会话的持久化
+        中间件：connect-mongo --save
+        保存状态:npm install cookie-parser express-session                      connect-multiparty(文件上传用到) --save
+        session依赖cookie-parser 这个中间件
+    登出操作
+        if user else ...
+文件结构调整
+    mean框架结构
+        创建config文件夹，将入口文件app中关于路由的信息放到config的route.js 中
+        将route.js exports出去，在入口文件中require
+        在将route.js拆分
+        创建app文件夹，将models，schema，views文件夹放到里面
+独立注册登录页面
+用户权限管理
+    在用户的模式schema中，创建一个保存用户角色的字段role，用数字表示他们的大小
+    首先在User控制器中定义中间件来判断用户权限，然后在路由中调用该权限来控制用户是否可以访问相应的页面

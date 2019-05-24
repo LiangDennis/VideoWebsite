@@ -1,14 +1,19 @@
 var mongoose =require("mongoose");
+var Schema =mongoose.Schema;
+var ObjectId =Schema.Types.ObjectId;
 
-var MovieSchema =new mongoose.Schema({
-    doctor:String,
-    title:String,
-    country:String,
-    language:String,
-    year:Number,
-    poster:String,
-    summary:String,
-    flash:String,
+var CommentSchema =new Schema({
+    movie:{type: ObjectId, ref:"Movie"},
+    from:{type: ObjectId, ref:"User"},
+    to:{type: ObjectId, ref:"User"},
+    reply: [
+        {
+            from:{type:ObjectId,ref: "User"},
+            to:{type:ObjectId,ref: "User"},
+            content:String
+        }
+    ],
+    content:String,
     meta: {
         createAt: {
             type:Date,
@@ -21,17 +26,17 @@ var MovieSchema =new mongoose.Schema({
     }
 });
 // pre("save") 表示每次更新存储数据都要执行一次函数
-MovieSchema.pre("save", function(next) {
+CommentSchema.pre("save", function(next) {
     if (this.isNew) {
         this.meta.createAt =this.meta.updateAt =Date.now();
     }else {
-        this.updateAt =Date.now();
+        this.meta.updateAt =Date.now();
     }
     // next()才能使流程执行下去
     next();
 });
 // statics静态函数，只有当模型调用时才会执行的函数
-MovieSchema.statics ={
+CommentSchema.statics ={
     fetch: function(cb) {
         return this
             .find({})
@@ -45,4 +50,4 @@ MovieSchema.statics ={
     }
 }
 // 导出模式
-module.exports =MovieSchema;
+module.exports =CommentSchema;

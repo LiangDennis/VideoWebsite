@@ -9,5 +9,5 @@ block content
                         a(href="/movie/#{item._id}")
                             img(src="#{item.poster}",alt="#{item.title}",width="150px",height="100px")
                         .caption
-                            h3 #{item.title}
+                            h3.text-truncate #{item.title}
                             p: a.btn.btn-primary(href="/movie/#{item._id}",role="button") 观看预告片
